@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ministère de la Santé, de l'Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances</title>
+<meta name="description" content="Site officiel du Ministère de la Santé, de l'Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances - République Togolaise">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/png" href="logo1.png">
+</head>
+<body>
+
+<!-- Formulaire caché pour que Netlify détecte le formulaire au build -->
+<form name="inscription" data-netlify="true" hidden>
+  <input type="text" name="nom">
+  <input type="text" name="prenom">
+  <input type="date" name="date_naissance">
+  <input type="text" name="numero">
+</form>
+
+<!-- ============ PORTE D'INSCRIPTION (bloquante) ============ -->
+<div id="gate-overlay">
+  <div class="gate-card">
+    <div class="gate-header">
+      <h2>Créer votre compte</h2>
+      <p>Merci de renseigner vos informations pour accéder au site.</p>
+    </div>
+
+    <form id="gate-form" name="inscription" method="POST" data-netlify="true" novalidate>
+      <input type="hidden" name="form-name" value="inscription">
+
+      <div class="gate-row">
+        <div class="gate-field">
+          <label for="g-nom">Nom</label>
+          <input type="text" id="g-nom" name="nom" required autocomplete="family-name">
+        </div>
+        <div class="gate-field">
+          <label for="g-prenom">Prénom</label>
+          <input type="text" id="g-prenom" name="prenom" required autocomplete="given-name">
+        </div>
+      </div>
+
+      <div class="gate-field">
+        <label for="g-naissance">Date de naissance</label>
+        <input type="date" id="g-naissance" name="date_naissance" required>
+      </div>
+
+      <div class="gate-field">
+        <label for="g-tel">Numéro de téléphone</label>
+        <div class="gate-phone">
+          <select id="g-indicatif" name="indicatif">
+            <option value="+228" selected>🇹🇬 +228 — Togo</option>
+            <option value="+229">🇧🇯 +229 — Bénin</option>
+            <option value="+233">🇬🇭 +233 — Ghana</option>
+            <option value="+234">🇳🇬 +234 — Nigeria</option>
+            <option value="+225">🇨🇮 +225 — Côte d'Ivoire</option>
+            <option value="+226">🇧🇫 +226 — Burkina Faso</option>
+            <option value="+227">🇳🇪 +227 — Niger</option>
+            <option value="+223">🇲🇱 +223 — Mali</option>
+            <option value="+221">🇸🇳 +221 — Sénégal</option>
+            <option value="+224">🇬🇳 +224 — Guinée</option>
+            <option value="+237">🇨🇲 +237 — Cameroun</option>
+            <option value="+241">🇬🇦 +241 — Gabon</option>
+            <option value="+33">🇫🇷 +33 — France</option>
+            <option value="+1">🇺🇸 +1 — États-Unis / Canada</option>
+          </select>
+          <input type="tel" id="g-numero" name="numero" placeholder="90 00 00 00" required inputmode="numeric">
+        </div>
+      </div>
+
+      <p id="gate-error" class="gate-error"></p>
+
+      <button type="submit" class="gate-submit">S'inscrire et accéder au site</button>
+    </form>
+  </div>
+</div>
+<!-- ============ FIN PORTE D'INSCRIPTION ============ -->
+
+<!-- ==========================================================================
+     HEADER
+     ========================================================================== -->
+<div class="topbar-wrap">
+  <header class="topbar">
+
+    <a href="index.html" class="logo-box">
+      <img src="logo1.png" alt="Logo du Ministère de la Santé, de l'Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances" class="logo-img">
+      <span class="logo-text">Ministère de la Santé, de l'Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances.</span>
+    </a>
+
+    <nav class="nav-box">
+      <ul class="main-nav">
+
+        <li class="has-dropdown" data-menu="ministere">
+          <button class="nav-link" aria-expanded="false">
+            Ministère
+            <svg class="chev" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown-panel">
+            <div class="dropdown-inner">
+              <div class="dropdown-col">
+                <ul>
+                  <li><a href="cabinet.html">Cabinet</a></li>
+                  <li><a href="attributions.html">Attributions et objectifs</a></li>
+                  <li><a href="fonctionnement.html">Fonctionnement du Ministère</a></li>
+                  <li><a href="documentation.html">Documentation</a></li>
+                  <li><a href="historique.html">Historique</a></li>
+                  <li><a href="organismes.html">Organismes rattachés</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li><a class="nav-link" href="ministre.html">Ministre</a></li>
+
+        <li class="has-dropdown" data-menu="actions">
+          <button class="nav-link" aria-expanded="false">
+            Actions
+            <svg class="chev" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown-panel">
+            <div class="dropdown-inner">
+              <div class="dropdown-col">
+                <h4>Domaines d'interventions</h4>
+                <ul>
+                  <li><a href="domaine-financement.html">Financement du système de santé</a></li>
+                  <li><a href="domaine-medicaments.html">Médicaments, vaccins, produits sanguins et technologies</a></li>
+                  <li><a href="domaine-sni.html">Système national d'information sanitaire</a></li>
+                  <li><a href="domaine-approvisionnement.html">Système d'approvisionnement des produits pharmaceutiques</a></li>
+                  <li><a href="domaine-rh.html">Ressources humaines pour la santé</a></li>
+                  <li><a href="domaine-labo.html">Laboratoire de biologie médicale</a></li>
+                  <li><a href="domaine-recherche.html">Recherche en santé</a></li>
+                  <li><a href="domaine-gouvernance.html">Gouvernance, leadership et pilotage du système de santé</a></li>
+                </ul>
+              </div>
+              <div class="dropdown-col">
+                <h4>Programmes</h4>
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="has-dropdown" data-menu="actualites">
+          <button class="nav-link" aria-expanded="false">
+            Actualités
+            <svg class="chev" viewBox="0 0 12 8" fill="none"><path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="dropdown-panel">
+            <div class="dropdown-inner">
+              <div class="dropdown-col">
+                <h4>Par type</h4>
+                <ul>
+                  <li><a href="avis-annonces.html">Avis et annonces</a></li>
+                  <li><a href="deplacements.html">Déplacements / Visites</a></li>
+                  <li><a href="discours.html">Discours</a></li>
+                  <li><a href="news.html">News</a></li>
+                </ul>
+              </div>
+              <div class="dropdown-col">
+                <h4>Espace presse</h4>
+                <ul>
+                  <li><a href="espace-presse.html">Espace presse</a></li>
+                  <li><a href="communiques.html">Communiqués de presse</a></li>
+                  <li><a href="photos-hd.html">Photos HD</a></li>
+                </ul>
+                <a class="dropdown-cta" href="actualites.html">Voir toutes les actualités &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <button class="search-btn" type="button" aria-label="Rechercher">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </nav>
+
+  </header>
+</div>
+
+<div class="pattern-strip" aria-hidden="true"></div>
+
+<!-- ==========================================================================
+     HERO
+     ========================================================================== -->
+<section class="hero">
+  <div class="hero-photo" aria-hidden="true">
+    <img src="logo.jpeg" alt="Photo illustrant le Ministère de la Santé" style="width:100%;height:100%;object-fit:cover;display:block;">
+  </div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Soigner mieux. Partout. Maintenant.</h1>
+      <p>Simplifier l&rsquo;accès aux soins, moderniser les établissements, connecter les professionnels de santé.</p>
+      <a class="btn btn-light" href="actions.html">
+        Découvrir nos actions et projets
+        <img src="lol1.jpeg" >
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     ACTUALITÉS
+     ========================================================================== -->
+<section class="section bg-soft">
+  <div class="container">
+    <div class="section-head">
+      <h2>Dans l'actualité du MSHPCSUA</h2>
+      <a class="see-all" href="actualites.html">Toutes les actualités</a>
+    </div>
+
+    <div class="card-grid">
+
+      <article class="news-card">
+        <div class="thumb">
+          <img src="lol2.jpeg" alt="Photo illustrant l'actualité" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="body">
+          <span class="tag">Actualité</span>
+          <h3>Intempéries et inondations&nbsp;: le Ministre Jean-Marie TESSI en visite dans les centres de santé et sites de prise en charge des sinistrés</h3>
+          <span class="date">6 juillet 2026</span>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="thumb">
+          <img src="lol3.jpeg" alt="Photo illustrant l'actualité" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="body">
+          <span class="tag">Actualité</span>
+          <h3>Réponse aux intempéries&nbsp;: le Gouvernement accélère les mesures d&rsquo;urgence dans les zones sinistrées</h3>
+          <span class="date">3 juillet 2026</span>
+        </div>
+      </article>
+
+      <article class="news-card">
+        <div class="thumb">
+          <img src="lol4.jpeg" alt="Photo illustrant l'actualité" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div class="body">
+          <span class="tag">Actualité</span>
+          <h3>HUMANIS 2026&nbsp;: Quand la santé devient une responsabilité partagée</h3>
+          <span class="date">25 juin 2026</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     CHIFFRES CLÉS
+     ========================================================================== -->
+<section class="stats-section">
+  <div class="container">
+    <h2>Chiffres clés</h2>
+    <div class="stats-grid">
+
+      <div class="stat-card">
+        <svg class="icon" viewBox="0 0 26 20" fill="none"><path d="M2 18V10M9 18V4M16 18V12M23 18V2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="value">27%</div>
+        <div class="label">Accouchements Assistés</div>
+        <div class="sub">par du personnel qualifié</div>
+      </div>
+
+      <div class="stat-card">
+        <svg class="icon" viewBox="0 0 26 20" fill="none"><path d="M2 18V10M9 18V4M16 18V12M23 18V2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="value">27&permil;</div>
+        <div class="label">Mortalité neonatale</div>
+        <div class="sub">pour mille naissances vivantes</div>
+      </div>
+
+      <div class="stat-card">
+        <svg class="icon" viewBox="0 0 26 20" fill="none"><path d="M2 18V10M9 18V4M16 18V12M23 18V2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="value">401</div>
+        <div class="label">Taux de mortalité maternelle</div>
+        <div class="sub">pour 100 mille naissances vivantes</div>
+      </div>
+
+      <div class="stat-card">
+        <svg class="icon" viewBox="0 0 26 20" fill="none"><path d="M2 18V10M9 18V4M16 18V12M23 18V2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        <div class="value">52,9%</div>
+        <div class="label">Taux de fréquentation</div>
+        <div class="sub">en 2024</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     DOMAINES D'INTERVENTION + MINISTRE
+     ========================================================================== -->
+<section class="section bg-soft">
+  <div class="container">
+    <div class="split-grid">
+
+      <div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2 style="font-size:22px;">Domaines d'intervention</h2>
+        </div>
+      </div>
+      <div></div>
+      <div>
+        <div class="section-head" style="margin-bottom:20px;">
+          <h2 style="font-size:22px;">Ministre</h2>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <svg class="icon" viewBox="0 0 24 20" fill="none"><path d="M1 12h5l2-8 4 16 2-8h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Financement du système de santé</h3>
+        <a class="more" href="domaine-financement.html">En savoir plus
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="info-card">
+        <svg class="icon" viewBox="0 0 24 20" fill="none"><path d="M1 12h5l2-8 4 16 2-8h9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Médicaments, vaccins, produits sanguins et technologies</h3>
+        <a class="more" href="domaine-medicaments.html">En savoir plus
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+
+      <div class="minister-card">
+        <div class="photo">
+          <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="200" fill="#4a332c"/>
+            <rect width="400" height="200" fill="url(#m1)"/>
+            <defs><linearGradient id="m1" x1="0" y1="0" x2="400" y2="200" gradientUnits="userSpaceOnUse"><stop stop-color="#5a4038"/><stop offset="1" stop-color="#7a5648"/></linearGradient></defs>
+            <circle cx="200" cy="70" r="55" fill="#3a2a24" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="body">
+          <h3>Monsieur Jean&#8209;Marie Koffi Ewonoulé TESSI</h3>
+          <p class="role">Ministre de la Santé, de l&rsquo;Hygiène publique, de la Couverture Sanitaire Universelle et des Assurances.</p>
+          <div class="links">
+            <a href="biographie.html">Biographie</a>
+            <a href="cabinet.html">Composition du cabinet</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     PROJETS
+     ========================================================================== -->
+<section class="projects-section">
+  <div class="container">
+    <div class="section-head">
+      <h2>Projets</h2>
+      <a class="see-all" href="projets.html">Tous les projets</a>
+    </div>
+
+    <div class="card-grid">
+
+      <article class="project-card">
+        <h3>Projet P4: Elaboration et exécution d&rsquo;un plan de réponse aux urgences sanitaires</h3>
+        <p>Offrir une identité et garantir la couverture santé et l&rsquo;accès aux services de base à tous à travers le renforcement de l&rsquo;accès et l&rsquo;amélioration de l&hellip;</p>
+        <a class="more" href="projet-p4.html">Découvrir le projet
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <article class="project-card">
+        <h3>Projet P3: Mise en place de la Couverture Santé Universelle</h3>
+        <p>(i)Densification de l&rsquo;offre de soins (construction de centres et recrutement de personnel), (ii) Renforcement et modernisation des équipements, (iii) &hellip;</p>
+        <a class="more" href="projet-p3.html">Découvrir le projet
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+      <article class="project-card">
+        <h3>Gavi Alliance</h3>
+        <p>Financement de la plateforme d&rsquo;optimisation des équipements de la chaine de froid&hellip;</p>
+        <a class="more" href="projet-gavi.html">Découvrir le projet
+          <svg viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<div class="pattern-strip" aria-hidden="true"></div>
+
+<!-- ==========================================================================
+     MÉDIATHÈQUE / PUBLICATIONS
+     ========================================================================== -->
+<section class="section bg-soft">
+  <div class="container">
+    <div class="media-grid">
+
+      <div>
+        <div class="eyebrow">
+          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.4"/><path d="M6.5 5.5l4 2.5-4 2.5V5.5z" fill="currentColor"/></svg>
+          Médiathèque
+        </div>
+        <h2>Dernière Vidéo</h2>
+
+        <div class="video-thumb">
+          <svg class="bg" viewBox="0 0 600 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+            <rect width="600" height="300" fill="#2a3a3d"/>
+            <rect width="600" height="300" fill="url(#v1)"/>
+            <defs><linearGradient id="v1" x1="0" y1="0" x2="600" y2="300" gradientUnits="userSpaceOnUse"><stop stop-color="#3a4c4f"/><stop offset="1" stop-color="#5d7a78"/></linearGradient></defs>
+            <rect x="150" y="60" width="140" height="200" rx="20" fill="#e8ece9" opacity=".85"/>
+            <rect x="320" y="70" width="140" height="190" rx="20" fill="#dfe6e2" opacity=".85"/>
+          </svg>
+          <div class="play-btn">
+            <svg viewBox="0 0 20 20"><path d="M5 3l12 7-12 7V3z"/></svg>
+          </div>
+          <div class="video-caption">Le médecin</div>
+        </div>
+
+        <div class="video-title">Harmonisation de la tenue vestimentaire du personnel de santé</div>
+      </div>
+
+      <div>
+        <div class="eyebrow">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M4 2h6l3 3v9a1 1 0 01-1 1H4a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" stroke-width="1.3"/><path d="M6 8h4M6 11h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          Publications
+        </div>
+        <h2>Derniers Documents</h2>
+        <p class="doc-empty">Aucun document disponible.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================================================
+     FOOTER
+     ========================================================================== -->
+<footer class="footer">
+  <div class="container">
+
+    <div class="newsletter-box">
+      <div>
+        <div class="heading">
+          <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 5l8 6 8-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Lettre d'information
+        </div>
+        <div class="desc">Recevez les actualités du ministère directement par email.</div>
+      </div>
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="Votre adresse email" required aria-label="Adresse email">
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <svg class="coat-of-arms" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="75" rx="55" ry="70" fill="none" stroke="#2f6e3f" stroke-width="3"/>
+          <rect x="42" y="35" width="36" height="46" fill="#1c8a3d"/>
+          <rect x="42" y="35" width="36" height="15.3" fill="#1c8a3d"/>
+          <rect x="42" y="50.3" width="36" height="15.3" fill="#f3c318"/>
+          <rect x="42" y="65.6" width="36" height="15.4" fill="#d6222c"/>
+          <path d="M55 35 L60 30 L65 35 Z" fill="#f3c318"/>
+          <path d="M40 62c-10 4-16 14-14 26 8-2 16-10 18-20z" fill="#c73a30"/>
+          <path d="M80 62c10 4 16 14 14 26-8-2-16-10-18-20z" fill="#c73a30"/>
+          <text x="60" y="128" text-anchor="middle" font-family="Poppins, sans-serif" font-size="9" font-weight="700" fill="#1a2233" letter-spacing="0.5">RÉPUBLIQUE</text>
+          <text x="60" y="139" text-anchor="middle" font-family="Poppins, sans-serif" font-size="9" font-weight="700" fill="#1a2233" letter-spacing="0.5">TOGOLAISE</text>
+        </svg>
+        <p>Ministère de la Santé, de l&rsquo;Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Ministère</h4>
+        <ul>
+          <li><a href="cabinet.html">Cabinet</a></li>
+          <li><a href="documentation.html">Documentation</a></li>
+          <li><a href="organismes.html">Organes rattachés</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Actions</h4>
+        <ul>
+          <li><a href="projets.html">Tous les projets</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Actualités &amp; Transparence</h4>
+        <ul>
+          <li><a href="actualites.html">Toutes les actualités</a></li>
+          <li><a href="avis-annonces.html">Avis et annonces</a></li>
+          <li><a href="discours.html">Discours</a></li>
+          <li><a href="espace-presse.html">Espace presse</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 Ministère de la Santé, de l&rsquo;Hygiène Publique, de la Couverture Sanitaire Universelle et des Assurances &mdash; République Togolaise. Tous droits réservés.
+    </div>
+
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var items = document.querySelectorAll('.has-dropdown');
+
+  function closeAll(except) {
+    items.forEach(function (li) {
+      if (li !== except) {
+        li.classList.remove('open');
+        li.querySelector('.nav-link').setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  items.forEach(function (li) {
+    var btn = li.querySelector('.nav-link');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = li.classList.contains('open');
+      closeAll(li);
+      li.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  document.addEventListener('click', function () { closeAll(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll();
+  });
+});
+
+(function () {
+  var overlay = document.getElementById('gate-overlay');
+  var form = document.getElementById('gate-form');
+  var errorBox = document.getElementById('gate-error');
+
+  document.body.style.overflow = 'hidden';
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !overlay.classList.contains('hidden')) e.preventDefault();
+  });
+
+  function encode(data) {
+    return Object.keys(data).map(function (k) {
+      return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+    }).join('&');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    errorBox.textContent = '';
+
+    var nom = document.getElementById('g-nom').value.trim();
+    var prenom = document.getElementById('g-prenom').value.trim();
+    var naissance = document.getElementById('g-naissance').value;
+    var indicatif = document.getElementById('g-indicatif').value;
+    var numero = document.getElementById('g-numero').value.trim();
+
+    if (!nom || !prenom || !naissance || !numero) {
+      errorBox.textContent = 'Merci de remplir tous les champs.';
+      return;
+    }
+
+    var submitBtn = form.querySelector('.gate-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enregistrement...';
+
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'inscription',
+        nom: nom,
+        prenom: prenom,
+        date_naissance: naissance,
+        numero: indicatif + ' ' + numero
+      })
+    })
+    .then(function () {
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    })
+    .catch(function () {
+      errorBox.textContent = "Impossible de contacter le serveur.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "S'inscrire et accéder au site";
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
